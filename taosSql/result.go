@@ -126,9 +126,9 @@ func (rows *taosSqlRows) readRow(dest []driver.Value) error {
 		mc.taosFetchBlock()
 	}
 	if mc.blockSize == 0 {
+		C.taos_free_result(mc.result)
 		mc.block = nil
 		mc.result = nil
-		C.taos_free_result(mc.result)
 		return io.EOF
 	}
 
@@ -136,9 +136,9 @@ func (rows *taosSqlRows) readRow(dest []driver.Value) error {
 		mc.taosFetchBlock()
 	}
 	if mc.blockSize == 0 {
+		C.taos_free_result(mc.result)
 		mc.block = nil
 		mc.result = nil
-		C.taos_free_result(mc.result)
 		return io.EOF
 	}
 
